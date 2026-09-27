@@ -31,21 +31,21 @@ export const TIMELINE: TimelineEntry[] = [
     ],
   },
   {
-    focus: "Factory Layout & Material Flow",
+    focus: "Factory Layout & Material Flow (Tesla Semi)",
     org: "Tesla",
-    title: "Powertrain",
+    title: "Industrial Engineer",
     period: "May 2023 – Dec 2023",
     location: "Austin, TX",
     summary:
-      "Developed layouts and material flow paths for powertrain production shops and their support spaces.",
+      "Developed layouts and material flow paths for Tesla Semi production shops and their support spaces.",
     highlights: [
       "Ran material flow analysis to set the shop and dock configuration, cutting raw material travel distance.",
       "Built parametric Revit models for support spaces to speed up layout iterations.",
     ],
   },
   {
-    focus: "Continuous Improvement",
-    org: "Volvo Group · Mack Trucks",
+    focus: "Continuous Improvement Engineer",
+    org: "Volvo Group · Group Trucks Operations",
     period: "Aug 2022 – Dec 2022",
     location: "Macungie, PA",
     summary:

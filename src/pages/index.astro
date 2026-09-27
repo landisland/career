@@ -5,7 +5,6 @@ import PageLayout from "@layouts/PageLayout.astro";
 import ArrowCard from "@components/ArrowCard.astro";
 import Link from "@components/Link.astro";
 import Timeline from "@components/Timeline.astro";
-import StatusLine from "@components/StatusLine.astro";
 import { SITE, HOME, SOCIALS } from "@consts";
 import { TIMELINE } from "@data/timeline";
 import { PROJECTS } from "@data/projects";
@@ -15,7 +14,6 @@ const posts = (await getCollection("blog"))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
 
-const current = TIMELINE.find(e => e.current);
 const socials = SOCIALS.filter(s => s.HREF);
 ---
 
@@ -26,15 +24,16 @@ const socials = SOCIALS.filter(s => s.HREF);
         <h1 class="animate text-2xl font-semibold text-black dark:text-white">
           Hi, I'm Liam.
         </h1>
-        <div class="animate">
-          <StatusLine entry={current} />
-        </div>
         <article class="animate space-y-4">
           <p>
-            I'm a manufacturing engineer working on layout design. I figure out
-            how a space should work: where equipment goes, how material and
-            people move through it, and how to turn a good design into one that
-            can be repeated.
+            I'm a manufacturing engineer working on layout design. I look at a
+            building the way Donella Meadows looks at any system in
+            <em>Thinking in Systems</em>: stocks and flows, connected by
+            feedback. Parts wait in buffers, move between processes, and share
+            aisles with people and vehicles. The layout is the structure behind
+            all of that behavior, so my job is to find the few leverage points
+            where a change on the plan changes how the whole place runs, and
+            then turn that into a design that can be repeated.
           </p>
           <p>
             I've done this for factories and for collision centers, service
