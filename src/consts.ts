@@ -7,7 +7,7 @@ export const SITE: Site = {
 
 export const HOME: Metadata = {
   TITLE: "Home",
-  DESCRIPTION: "Liam Yang, manufacturing engineer working on layout design. Writing, projects, and a short resume.",
+  DESCRIPTION: "Liam Yang, an engineer who designs systems. Writing, projects, and a short resume.",
 };
 
 export const WRITING: Metadata = {
@@ -20,10 +20,10 @@ export const RESUME: Metadata = {
   DESCRIPTION: "Experience and education of Liam Yang.",
 };
 
-// Paste your LinkedIn profile URL here. The "Elsewhere" section stays hidden while it's empty.
+// Links in the "Elsewhere" section on the home page. Entries with an empty HREF are hidden.
 export const SOCIALS: Socials = [
   {
     NAME: "LinkedIn",
-    HREF: "",
+    HREF: "https://www.linkedin.com/in/chunliangyang/",
   },
 ];
