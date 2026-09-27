@@ -7,12 +7,12 @@ export const SITE: Site = {
 
 export const HOME: Metadata = {
   TITLE: "Home",
-  DESCRIPTION: "Liam Yang, manufacturing engineer. Factory layouts, material flow, and notes on the work.",
+  DESCRIPTION: "Liam Yang, manufacturing engineer working on layout design. Career timeline, resume, and writing.",
 };
 
 export const WRITING: Metadata = {
   TITLE: "Writing",
-  DESCRIPTION: "Plain-language notes on factory layout, material flow, and industrial engineering.",
+  DESCRIPTION: "Plain-language notes on layout design, industrial engineering, and the work along the way.",
 };
 
 export const RESUME: Metadata = {
@@ -20,13 +20,10 @@ export const RESUME: Metadata = {
   DESCRIPTION: "Experience and education of Liam Yang.",
 };
 
+// Paste your LinkedIn profile URL here. The "Elsewhere" section stays hidden while it's empty.
 export const SOCIALS: Socials = [
   {
-    NAME: "中文博客",
-    HREF: "https://landisland.blog",
-  },
-  {
-    NAME: "github",
-    HREF: "https://github.com/landisland",
+    NAME: "LinkedIn",
+    HREF: "",
   },
 ];

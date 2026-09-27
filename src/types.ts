@@ -14,8 +14,9 @@ export type Socials = {
 }[];
 
 export type TimelineEntry = {
-  company: string;
-  team: string;
+  focus: string;
+  org: string;
+  title?: string;
   period: string;
   location: string;
   summary: string;

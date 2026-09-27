@@ -6,11 +6,9 @@ const { entry } = Astro.props;
 ---
 
 {entry && (
-  <div class="status">
+  <div class="status text-sm">
     <span class="pulse" aria-hidden="true" />
-    <span>
-      Currently: <span class="text-black dark:text-white">{entry.team}</span> at {entry.company}
-    </span>
+    <span>{entry.focus} at {entry.org}</span>
   </div>
 )}
 
@@ -18,19 +16,12 @@ const { entry } = Astro.props;
   .status {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    padding: 6px 12px;
-    border-radius: 9999px;
-    border: 1px solid rgb(0 0 0 / 0.12);
-    font-size: 14px;
-  }
-  :global(.dark) .status {
-    border-color: rgb(255 255 255 / 0.18);
+    gap: 8px;
   }
   .pulse {
     position: relative;
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     border-radius: 9999px;
     background: rgb(34 197 94);
     flex: none;
@@ -41,11 +32,11 @@ const { entry } = Astro.props;
     inset: 0;
     border-radius: 9999px;
     background: rgb(34 197 94);
-    animation: breathe 2.4s ease-out infinite;
+    animation: breathe 3s ease-out infinite;
   }
   @keyframes breathe {
-    0% { transform: scale(1); opacity: 0.55; }
-    70%, 100% { transform: scale(2.8); opacity: 0; }
+    0% { transform: scale(1); opacity: 0.4; }
+    60%, 100% { transform: scale(2.2); opacity: 0; }
   }
   @media (prefers-reduced-motion: reduce) {
     .pulse::after { animation: none; }

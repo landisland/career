@@ -15,6 +15,7 @@ const posts = (await getCollection("blog"))
   .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
 
 const current = TIMELINE.find(e => e.current);
+const socials = SOCIALS.filter(s => s.HREF);
 ---
 
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
@@ -29,19 +30,20 @@ const current = TIMELINE.find(e => e.current);
         </div>
         <article class="animate space-y-4">
           <p>
-            I'm a manufacturing engineer. I design factory layouts: where the
-            equipment goes, how parts move between stations, and how people and
-            robots share the same floor.
+            I'm a manufacturing engineer working on layout design. I figure out
+            how a space should work: where equipment goes, how material and
+            people move through it, and how to turn a good design into one that
+            can be repeated.
           </p>
           <p>
-            Before that I designed collision centers, service centers, and used
-            car hubs, and before that I worked on continuous improvement on a
-            truck assembly line. I studied industrial engineering at Beijing
-            Jiaotong University and Texas A&amp;M.
+            I've done this for factories and for collision centers, service
+            centers, and used car hubs. Before that, I worked on continuous
+            improvement on a truck assembly line. I have a master's degree in
+            Industrial Engineering from Texas A&amp;M.
           </p>
           <p>
-            This site is where I write down what I learn about factories, in
-            plain language.
+            This site keeps track of my career path, and it's where I write down
+            what I learn along the way.
           </p>
         </article>
       </section>
@@ -82,21 +84,23 @@ const current = TIMELINE.find(e => e.current);
         )}
       </section>
 
-      <section class="animate space-y-4">
-        <h2 class="font-semibold text-black dark:text-white">
-          Elsewhere
-        </h2>
-        <ul class="flex flex-wrap gap-2">
-          {SOCIALS.map((SOCIAL, i) => (
-            <li class="flex gap-x-2 text-nowrap">
-              <Link href={SOCIAL.HREF} external aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}>
-                {SOCIAL.NAME}
-              </Link>
-              {i < SOCIALS.length - 1 && "/"}
-            </li>
-          ))}
-        </ul>
-      </section>
+      {socials.length > 0 && (
+        <section class="animate space-y-4">
+          <h2 class="font-semibold text-black dark:text-white">
+            Elsewhere
+          </h2>
+          <ul class="flex flex-wrap gap-2">
+            {socials.map((SOCIAL, i) => (
+              <li class="flex gap-x-2 text-nowrap">
+                <Link href={SOCIAL.HREF} external aria-label={`${SITE.NAME} on ${SOCIAL.NAME}`}>
+                  {SOCIAL.NAME}
+                </Link>
+                {i < socials.length - 1 && "/"}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   </Container>
 </PageLayout>
