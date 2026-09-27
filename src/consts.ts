@@ -7,7 +7,7 @@ export const SITE: Site = {
 
 export const HOME: Metadata = {
   TITLE: "Home",
-  DESCRIPTION: "Liam Yang, manufacturing engineer working on layout design. Career timeline, resume, and writing.",
+  DESCRIPTION: "Liam Yang, manufacturing engineer working on layout design. Writing, projects, and a short resume.",
 };
 
 export const WRITING: Metadata = {

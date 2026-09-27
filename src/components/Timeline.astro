@@ -4,12 +4,13 @@ import type { TimelineEntry } from "@types";
 type Props = {
   entries: TimelineEntry[];
   showHighlights?: boolean;
+  showSummary?: boolean;
 };
 
-const { entries, showHighlights = false } = Astro.props;
+const { entries, showHighlights = false, showSummary = true } = Astro.props;
 ---
 
-<ol class="timeline">
+<ol class:list={["timeline", !showSummary && "timeline-compact"]}>
   {entries.map((entry) => (
     <li class="timeline-item">
       <span
@@ -28,9 +29,11 @@ const { entries, showHighlights = false } = Astro.props;
         {[entry.org, entry.title].filter(Boolean).join(" · ")}
         {showHighlights && <span class="opacity-60">{" · "}{entry.location}</span>}
       </div>
-      <p class="mt-2 font-serif text-[15px] leading-relaxed">
-        {entry.summary}
-      </p>
+      {showSummary && (
+        <p class="mt-2 font-serif text-[15px] leading-relaxed">
+          {entry.summary}
+        </p>
+      )}
       {showHighlights && entry.highlights && (
         <ul class="mt-2 list-disc pl-5 font-serif text-[15px] leading-relaxed space-y-1">
           {entry.highlights.map((h) => <li>{h}</li>)}
@@ -53,6 +56,9 @@ const { entries, showHighlights = false } = Astro.props;
     position: relative;
     padding-left: 22px;
     padding-bottom: 28px;
+  }
+  .timeline-compact .timeline-item {
+    padding-bottom: 16px;
   }
   .timeline-item:last-child {
     padding-bottom: 0;

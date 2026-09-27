@@ -29,3 +29,9 @@ export type EducationEntry = {
   degree: string;
   period: string;
 };
+
+export type ProjectEntry = {
+  title: string;
+  description: string;
+  href?: string;
+};

@@ -8,6 +8,7 @@ import Timeline from "@components/Timeline.astro";
 import StatusLine from "@components/StatusLine.astro";
 import { SITE, HOME, SOCIALS } from "@consts";
 import { TIMELINE } from "@data/timeline";
+import { PROJECTS } from "@data/projects";
 
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -51,18 +52,6 @@ const socials = SOCIALS.filter(s => s.HREF);
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
           <h2 class="font-semibold text-black dark:text-white">
-            Timeline
-          </h2>
-          <Link href="/resume">
-            Full resume
-          </Link>
-        </div>
-        <Timeline entries={TIMELINE} />
-      </section>
-
-      <section class="animate space-y-6">
-        <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h2 class="font-semibold text-black dark:text-white">
             Writing
           </h2>
           {posts.length > 0 && (
@@ -82,6 +71,45 @@ const socials = SOCIALS.filter(s => s.HREF);
         ) : (
           <p class="text-sm">The first essay is on its way.</p>
         )}
+      </section>
+
+      <section class="animate space-y-6">
+        <h2 class="font-semibold text-black dark:text-white">
+          Projects
+        </h2>
+        {PROJECTS.length > 0 ? (
+          <ul class="flex flex-col gap-4">
+            {PROJECTS.map(project => (
+              <li>
+                {project.href ? (
+                  <a href={project.href} target="_blank" rel="noopener noreferrer" class="block py-3 px-4 rounded-lg border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out">
+                    <div class="font-semibold">{project.title}</div>
+                    <div class="text-sm">{project.description}</div>
+                  </a>
+                ) : (
+                  <div class="py-3 px-4 rounded-lg border border-black/15 dark:border-white/20">
+                    <div class="font-semibold">{project.title}</div>
+                    <div class="text-sm">{project.description}</div>
+                  </div>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="text-sm">Projects will show up here.</p>
+        )}
+      </section>
+
+      <section class="animate space-y-6">
+        <div class="flex flex-wrap gap-y-2 items-center justify-between">
+          <h2 class="font-semibold text-black dark:text-white">
+            Resume
+          </h2>
+          <Link href="/resume">
+            Full resume
+          </Link>
+        </div>
+        <Timeline entries={TIMELINE} showSummary={false} />
       </section>
 
       {socials.length > 0 && (
