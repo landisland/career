@@ -42,7 +42,7 @@
     <div class="tools">
       <button type="button" id="labelsBtn" aria-pressed="true">Labels</button>
       <button type="button" id="reset">Reset</button>
-      <a id="full" href="./" target="_blank" rel="noopener">Full screen ↗</a>
+      <a id="full" href="./index.html" target="_blank" rel="noopener">Full screen ↗</a>
     </div>
   </div>
   <div class="bar">
@@ -64,7 +64,7 @@
       cap.innerHTML = ''; var b = document.createElement('b'); b.textContent = f.name; cap.appendChild(b);
       cap.appendChild(document.createTextNode(' · ' + f.caption));
       [].forEach.call(chips.children, function(c){ c.setAttribute('aria-pressed', c.dataset.id === f.id ? 'true' : 'false'); });
-      full.href = './#' + f.id;
+      full.href = './index.html#' + f.id;
     }
     SystemModel.FIGS.forEach(function(f){
       var c = document.createElement('button'); c.type = 'button'; c.className = 'chip'; c.dataset.id = f.id; c.textContent = f.name;

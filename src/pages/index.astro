@@ -10,7 +10,7 @@ import { TIMELINE } from "@data/timeline";
 import { PROJECTS } from "@data/projects";
 
 const posts = (await getCollection("blog"))
-  .filter(post => !post.data.draft)
+  .filter(post => import.meta.env.DEV || !post.data.draft) // drafts show on localhost only
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, SITE.NUM_POSTS_ON_HOMEPAGE);
 
