@@ -18,7 +18,7 @@ const { entries, showHighlights = false, showSummary = true } = Astro.props;
         aria-hidden="true"
       />
       <div class="flex flex-wrap items-baseline justify-between gap-x-3">
-        <div class="font-semibold text-black dark:text-white">
+        <div class="font-semibold text-black">
           {entry.focus}
         </div>
         <div class="text-sm tabular-nums">
@@ -49,9 +49,6 @@ const { entries, showHighlights = false, showSummary = true } = Astro.props;
     margin-left: 4px;
     border-left: 1px solid rgb(0 0 0 / 0.12);
   }
-  :global(.dark) .timeline {
-    border-left-color: rgb(255 255 255 / 0.16);
-  }
   .timeline-item {
     position: relative;
     padding-left: 22px;
@@ -72,11 +69,7 @@ const { entries, showHighlights = false, showSummary = true } = Astro.props;
     border-radius: 9999px;
     background: rgb(168 162 158); /* stone-400 */
   }
-  :global(.dark) .dot {
-    background: rgb(120 113 108); /* stone-500 */
-  }
-  .dot-current,
-  :global(.dark) .dot-current {
+  .dot-current {
     background: rgb(34 197 94); /* green-500 */
   }
   .dot-current::after {

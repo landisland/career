@@ -17,7 +17,6 @@
 }
 .sys-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
 .sys-frame img { display: block; width: 100%; height: 100%; object-fit: contain; margin: 0; }
-html.dark .sys-frame { border-color: rgb(255 255 255 / 0.18); }
 @media (max-width: 640px) {
   .sys-frame.sys-model { aspect-ratio: 3 / 4; }
 }
@@ -31,9 +30,7 @@ html.dark .sys-frame { border-color: rgb(255 255 255 / 0.18); }
   color: inherit; text-decoration: underline; text-underline-offset: 3px;
   text-decoration-color: rgb(0 0 0 / 0.25);
 }
-html.dark .sys-open { text-decoration-color: rgb(255 255 255 / 0.35); }
 .sys-open:hover { color: #000; }
-html.dark .sys-open:hover { color: #fff; }
 .sys-open:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 
 .sys-notes {
@@ -44,10 +41,8 @@ html.dark .sys-open:hover { color: #fff; }
   font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.7rem; font-weight: 600;
   letter-spacing: 0.08em; text-transform: uppercase; line-height: 2.1; color: rgb(0 0 0 / 0.5);
 }
-html.dark .sys-notes dt { color: rgb(255 255 255 / 0.55); }
 .sys-notes dd { margin: 0; font-family: Lora, ui-serif, Georgia, serif; line-height: 1.7; }
 .sys-notes dd.practice { border-left: 2px solid rgb(0 0 0 / 0.12); padding-left: 0.9rem; }
-html.dark .sys-notes dd.practice { border-left-color: rgb(255 255 255 / 0.2); }
 @media (max-width: 560px) {
   .sys-notes { grid-template-columns: 1fr; gap: 0.15rem; }
   .sys-notes dd { margin-bottom: 0.9rem; }

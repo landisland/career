@@ -21,7 +21,7 @@ const socials = SOCIALS.filter(s => s.HREF);
   <Container>
     <div class="space-y-16">
       <section class="space-y-6">
-        <h1 class="animate text-2xl font-semibold text-black dark:text-white">
+        <h1 class="animate text-2xl font-semibold text-black">
           Hi, I'm Liam.
         </h1>
         <article class="animate space-y-4">
@@ -44,7 +44,7 @@ const socials = SOCIALS.filter(s => s.HREF);
 
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h2 class="font-semibold text-black dark:text-white">
+          <h2 class="font-semibold text-black">
             Writing
           </h2>
           {posts.length > 0 && (
@@ -67,7 +67,7 @@ const socials = SOCIALS.filter(s => s.HREF);
       </section>
 
       <section class="animate space-y-6">
-        <h2 class="font-semibold text-black dark:text-white">
+        <h2 class="font-semibold text-black">
           Projects
         </h2>
         {PROJECTS.length > 0 ? (
@@ -75,12 +75,12 @@ const socials = SOCIALS.filter(s => s.HREF);
             {PROJECTS.map(project => (
               <li>
                 {project.href ? (
-                  <a href={project.href} target="_blank" rel="noopener noreferrer" class="block py-3 px-4 rounded-lg border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out">
+                  <a href={project.href} target="_blank" rel="noopener noreferrer" class="block py-3 px-4 rounded-lg border border-black/15 hover:bg-black/5 hover:text-black transition-colors duration-300 ease-in-out">
                     <div class="font-semibold">{project.title}</div>
                     <div class="text-sm">{project.description}</div>
                   </a>
                 ) : (
-                  <div class="py-3 px-4 rounded-lg border border-black/15 dark:border-white/20">
+                  <div class="py-3 px-4 rounded-lg border border-black/15">
                     <div class="font-semibold">{project.title}</div>
                     <div class="text-sm">{project.description}</div>
                   </div>
@@ -95,7 +95,7 @@ const socials = SOCIALS.filter(s => s.HREF);
 
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
-          <h2 class="font-semibold text-black dark:text-white">
+          <h2 class="font-semibold text-black">
             Resume
           </h2>
           <Link href="/resume">
@@ -107,7 +107,7 @@ const socials = SOCIALS.filter(s => s.HREF);
 
       {socials.length > 0 && (
         <section class="animate space-y-4">
-          <h2 class="font-semibold text-black dark:text-white">
+          <h2 class="font-semibold text-black">
             Elsewhere
           </h2>
           <ul class="flex flex-wrap gap-2">

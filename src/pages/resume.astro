@@ -13,7 +13,7 @@ const HAS_PDF = false;
   <Container>
     <div class="space-y-12">
       <div class="animate flex flex-wrap items-baseline justify-between gap-2">
-        <h1 class="text-2xl font-semibold text-black dark:text-white">
+        <h1 class="text-2xl font-semibold text-black">
           Resume
         </h1>
         {HAS_PDF && (
@@ -24,17 +24,17 @@ const HAS_PDF = false;
       </div>
 
       <section class="animate space-y-6">
-        <h2 class="font-semibold text-black dark:text-white">Experience</h2>
+        <h2 class="font-semibold text-black">Experience</h2>
         <Timeline entries={TIMELINE} showHighlights />
       </section>
 
       <section class="animate space-y-4">
-        <h2 class="font-semibold text-black dark:text-white">Education</h2>
+        <h2 class="font-semibold text-black">Education</h2>
         <ul class="space-y-3">
           {EDUCATION.map(e => (
             <li class="flex flex-wrap items-baseline justify-between gap-x-3">
               <div>
-                <div class="font-semibold text-black dark:text-white">{e.school}</div>
+                <div class="font-semibold text-black">{e.school}</div>
                 <div class="text-sm">{e.degree}</div>
               </div>
               <div class="text-sm tabular-nums">{e.period}</div>
@@ -44,7 +44,7 @@ const HAS_PDF = false;
       </section>
 
       <section class="animate space-y-3">
-        <h2 class="font-semibold text-black dark:text-white">Tools</h2>
+        <h2 class="font-semibold text-black">Tools</h2>
         <p class="text-sm leading-relaxed">
           AutoCAD · Revit · FlexSim · SQL · Python · Power BI · Lean methods
           (5S, A3, FMEA, SLP)
