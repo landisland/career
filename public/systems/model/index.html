@@ -40,7 +40,7 @@
   <div class="stage" id="stage">
     <div class="labels" id="labels"></div>
     <div class="tools">
-      <button type="button" id="labelsBtn" aria-pressed="true">Labels</button>
+      <button type="button" id="labelsBtn" aria-pressed="false">Labels off</button>
       <button type="button" id="reset">Reset</button>
       <a id="full" href="./index.html" target="_blank" rel="noopener">Full screen ↗</a>
     </div>
@@ -58,13 +58,25 @@
     var labelsBtn = document.getElementById('labelsBtn'), full = document.getElementById('full');
     var embedded = window.self !== window.top;
     if(!embedded) full.hidden = true;
-    var model = null, labelsOn = true;
+    var model = null, labelsOn = false;
     function idFromHash(){ var h = (location.hash || '').slice(1); return SystemModel.FIGS.some(function(f){return f.id===h;}) ? h : 'overview'; }
     function onChange(f){
       cap.innerHTML = ''; var b = document.createElement('b'); b.textContent = f.name; cap.appendChild(b);
       cap.appendChild(document.createTextNode(' · ' + f.caption));
-      [].forEach.call(chips.children, function(c){ c.setAttribute('aria-pressed', c.dataset.id === f.id ? 'true' : 'false'); });
+      [].forEach.call(chips.children, function(c){
+        var on = c.dataset.id === f.id;
+        c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        if(on) scrollChipIntoView(c);
+      });
       full.href = './index.html#' + f.id;
+      // The Labels view is about the labels, so show them there.
+      if(f.id === 'labels' && model && !labelsOn) setLabels(true);
+    }
+    // Keep the active chip visible in the scrolling row, without scrolling the page around the iframe.
+    function scrollChipIntoView(c){
+      var cr = c.getBoundingClientRect(), rr = chips.getBoundingClientRect();
+      if(cr.left >= rr.left && cr.right <= rr.right) return;
+      chips.scrollLeft += (cr.left - rr.left) - (rr.width - cr.width) / 2;
     }
     SystemModel.FIGS.forEach(function(f){
       var c = document.createElement('button'); c.type = 'button'; c.className = 'chip'; c.dataset.id = f.id; c.textContent = f.name;
@@ -78,7 +90,8 @@
       return;
     }
     function setLabels(on){ labelsOn = on; model.labels(on); labelsBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); labelsBtn.textContent = on ? 'Labels' : 'Labels off'; }
-    if(stage.clientWidth < 520) setLabels(false);
+    // Labels start off: the first view reads better clean. Turn them on with the button.
+    setLabels(idFromHash() === 'labels');
     labelsBtn.addEventListener('click', function(){ setLabels(!labelsOn); });
     document.getElementById('reset').addEventListener('click', function(){ model.reset(); });
     window.addEventListener('hashchange', function(){ model.select(idFromHash()); });
