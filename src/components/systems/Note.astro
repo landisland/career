@@ -1,0 +1,7 @@
+---
+type Props = { label: string; practice?: boolean };
+const { label, practice = false } = Astro.props;
+---
+
+<dt>{label}</dt>
+<dd class={practice ? "practice" : undefined}><slot /></dd>

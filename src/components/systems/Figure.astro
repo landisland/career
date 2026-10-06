@@ -1,0 +1,28 @@
+---
+import "../../styles/systems.css";
+
+type Props = {
+  src: string;
+  alt: string;
+  caption?: string;
+  view?: string;      // id of a model view; adds an "Open in 3D" button
+  ratio?: string;     // CSS aspect-ratio, defaults to the 16:10 renders
+};
+const { src, alt, caption, view, ratio = "16 / 10" } = Astro.props;
+---
+
+<figure class="not-prose sys-block">
+  <div class="sys-frame" style={`aspect-ratio:${ratio}`}>
+    <a class="sys-zoom" href={src} target="_blank" rel="noopener" title="Open full size">
+      <img src={src} alt={alt} loading="lazy" decoding="async" />
+      <span class="sys-zoom-badge" aria-hidden="true">⤢</span>
+      <span class="sr-only">(opens full size in a new tab)</span>
+    </a>
+  </div>
+  {(caption || view) && (
+    <figcaption class="sys-cap">
+      {caption && <span>{caption}</span>}
+      {view && <button type="button" class="sys-open" data-open-view={view}>Open in 3D ↑</button>}
+    </figcaption>
+  )}
+</figure>

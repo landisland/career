@@ -1,0 +1,39 @@
+---
+// The interactive apartment model. Lives as a static page in /public/systems/model/
+// and is embedded with an iframe, so three.js never touches the rest of the site.
+import "../../styles/systems.css";
+
+type Props = { view?: string; caption?: string };
+const { view = "overview", caption = "Drag to turn the model. Pick a view to see one system at a time." } = Astro.props;
+---
+
+<figure class="not-prose sys-block" id="systems-model-figure">
+  <div class="sys-frame sys-model">
+    <iframe
+      id="systems-model"
+      src={`/systems/model/index.html#${view}`}
+      title="Interactive 3D model of a two-story apartment and its building systems"
+      loading="lazy"
+      allow="fullscreen"></iframe>
+  </div>
+  <figcaption class="sys-cap">
+    <span>{caption}</span>
+    <a class="sys-open" href={`/systems/model/index.html#${view}`} target="_blank" rel="noopener">Open full screen ↗</a>
+  </figcaption>
+</figure>
+
+<script>
+  // "Open in 3D" buttons anywhere on the page switch the embedded model to a view.
+  // One delegated listener survives Astro's client-side page transitions.
+  document.addEventListener("click", (event) => {
+    const button = (event.target as HTMLElement | null)?.closest<HTMLElement>("[data-open-view]");
+    if (!button) return;
+    const frame = document.getElementById("systems-model") as HTMLIFrameElement | null;
+    if (!frame) return;
+    const view = button.dataset.openView ?? "overview";
+    // A hash-only change keeps the iframe's page and just fires "hashchange" inside it.
+    frame.src = `/systems/model/index.html#${view}`;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    frame.closest("figure")?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+  });
+</script>

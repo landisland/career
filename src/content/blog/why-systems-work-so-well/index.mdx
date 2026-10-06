@@ -1,0 +1,203 @@
+---
+title: "Why Systems Work So Well"
+description: "This is the kind of apartment I live in. I want to use it to explain why we can live comfortably in a space like this, and what kind of effort is hidden behind the scenes."
+date: "2026-10-05"
+image: "/systems/figures/overview-nolabels.webp"
+---
+
+import ModelEmbed from "@components/systems/ModelEmbed.astro";
+import Figure from "@components/systems/Figure.astro";
+import Notes from "@components/systems/Notes.astro";
+import Note from "@components/systems/Note.astro";
+import Atlas from "@components/systems/Atlas.astro";
+import Parts from "@components/systems/Parts.astro";
+
+*This is the kind of apartment I live in. I want to use it to explain why we can live comfortably in a space like this, and what kind of effort is hidden behind the scenes.*
+
+<ModelEmbed caption="A two-story apartment with the drywall removed. Drag to turn it, and pick a view to see one system at a time." />
+
+## The word everyone skips
+
+My background is in industrial and systems engineering. But a lot of the time, people drop the second half. You see "Industrial Engineer" on job titles and LinkedIn profiles, almost never "Industrial and Systems Engineer". In school, many of us also learned the tools one by one: time study, queueing, optimization, simulation. Each tool is good at making one part better, and the word "systems" just sounded like decoration.
+
+For me it is the most important word. Making one part better is not enough. You also need to know how the parts work together, and what they are for. And the longer I work, the more I believe this is not only an industrial engineering thing. Systems thinking is useful almost everywhere: in a factory, in a company, in a city, even in your own home.
+
+The title of this post comes from a chapter in Donella Meadows' book *Thinking in Systems*. I think her answer fits buildings really well. So I will use the system everyone already knows, a home.
+
+## A home is a system
+
+Meadows says a system has three parts: elements, interconnections and a purpose. In a home, the elements are easy to see. Walls, a sofa, a fridge, a water heater. The interconnections hide behind the drywall: power, water, air, drains, and also the paths people and things take through the rooms. The purpose is the hardest part to see, but it's the most important one. A home is there so the people inside can live peacefully and comfortably.
+
+<Parts
+  caption="Elements + interconnections → purpose. Same apartment, three ways to look at it."
+  items={[
+    { src: "/systems/figures/parts-elements.webp", alt: "The apartment with only its walls, floors and furniture.", kicker: "Elements", title: "What you can see", text: "Walls, floors, a sofa, a bed, the fridge and the stove.", view: "elements" },
+    { src: "/systems/figures/parts-connections.webp", alt: "The same apartment showing only the hidden systems for power, water, air, drains and sprinklers.", kicker: "Interconnections", title: "What hides behind the drywall", text: "Power, water, air, drains and sprinklers, plus the paths we walk every day.", view: "connections" },
+    { src: "/systems/figures/parts-purpose.webp", alt: "The finished building, with none of the systems visible.", kicker: "Purpose", title: "What you actually feel", text: "A quiet, comfortable home. All of the above stays out of sight.", view: "purpose" },
+  ]}
+/>
+
+You can tell a home works well by how little you think about it. You turn on the tap and hot water comes out. You flip a switch and never wonder where the power comes from. The air is comfortable when you sleep. All this quiet is what the system gives you.
+
+> **A good system is one you never notice. The designer's job is to think it through before anyone has to.**
+
+Below are four principles behind that quiet. Each one is shown in the same apartment.
+
+## Principle 1: Purpose and flow before walls
+
+Every plan starts with what the space is for, and how things move through it. Walls come after.
+
+### 1.1 Draw the flow before you draw the walls
+
+<Figure
+  src="/systems/figures/flow.webp"
+  alt="Plan view of the ground-floor unit with a dashed path from the front door to the pantry, fridge, counter, stove and dining table, and a grey return path to the sink and trash."
+  caption="Groceries in, meals out, waste back out."
+  view="flow"
+/>
+
+<Notes>
+  <Note label="At home">Groceries come in from the front door. They wait in the pantry and the fridge, get prepped on the counter, cooked on the stove, and served on the table. Then dishes and trash go back out. A good kitchen follows this path, so you don't cross the room twice just to make dinner.</Note>
+  <Note label="The system idea">A system's behavior comes from its structure. If the structure ignores the flow, people inside pay for it with extra steps, every day.</Note>
+  <Note label="Where it stops">Flow is not the only purpose. A quiet bedroom, daylight and privacy also shape a plan, and sometimes they should win.</Note>
+</Notes>
+
+### 1.2 Contents first, container second
+
+<Figure
+  src="/systems/figures/grid.webp"
+  alt="Four plan diagrams. A bedroom drawn first leaves the door hitting the bed; a bedroom sized from the bed and its clearances fits. A column grid drawn first lands columns in machines and the aisle; a grid drawn after the equipment sits in the gaps."
+  caption="The same mistake at two scales."
+/>
+
+<Notes>
+  <Note label="At home">The size of a bedroom is really decided by the bed. A queen bed, plus about three feet on each side and at the foot, gives you a room around 11 by 10 feet. If you draw the room first, you get the bedroom many of us lived in before: the door hits the bed, and you walk sideways to the closet.</Note>
+  <Note label="The system idea">In a new building, the structural grid lives the longest. It should come from what the building will hold and how things move inside, not be drawn first and filled in later.</Note>
+  <Note label="Where it stops">Equipment changes faster than structure. So size the grid for families of equipment and patterns of flow, not for one machine. Wider spans give more flexibility but cost more steel. In an existing building it's the opposite: the grid is already there, and the layout has to work around it.</Note>
+  <Note label="From practice" practice>On new projects, I lay out the flow blocks and equipment families before the grid is fixed. In existing buildings, I start from the grid. I have done both, and the thinking goes in opposite directions.</Note>
+</Notes>
+
+## Principle 2: Think at every scale
+
+A fixture sits in a room, the room in a unit, the unit in a building, and the building on a site. A good decision should still make sense one level up and one level down.
+
+### 2.1 Every utility is the same tree
+
+<Figure
+  src="/systems/figures/service.webp"
+  alt="The building with its service connections highlighted: a pad-mount transformer feeding the electrical room, a water meter and line to the water heater closets, the sewer lateral, condensers and the sprinkler riser."
+  caption="Source, central room, riser, overhead, drop."
+  view="service"
+/>
+
+<Notes>
+  <Note label="At home">Power, water and sewer all follow the same pattern. A source at the street, a central room or closet, a riser between floors, a run overhead, and a drop to where you use it. The electrical room on the ground floor holds the meters for several units, and it has its own outside door. Each water heater has its own closet.</Note>
+  <Note label="The system idea">This is hierarchy. Each level serves the one below and is served by the one above. When a hair dryer overloads a circuit, only one breaker trips, and the rest of the home keeps running. Hierarchy keeps a local problem local.</Note>
+  <Note label="Where it stops">With too many levels, nothing can change without a long chain of approvals. With too few, one failure spreads everywhere. Keep it shallow where things change often.</Note>
+</Notes>
+
+### 2.2 Zoom out one level before you decide
+
+<Figure
+  src="/systems/figures/site.webp"
+  alt="Three identical apartment buildings along a street, sharing transformers and the power, water and sewer mains under the street."
+  caption="The unit, the building and the site are one stack."
+  view="site"
+/>
+
+<Notes>
+  <Note label="At home">One apartment is part of a building, and the building is one of several that share a transformer, a water main and a sewer under the street. Where to put the electrical room is a building question, not a unit question.</Note>
+  <Note label="The system idea">Something that looks best inside one level can be wrong at the next level. Checking one level up is cheap, and it catches most of these.</Note>
+  <Note label="From practice" practice>My own work has climbed the same ladder. First workstations and lines, then a full production shop, then a network of dozens of service sites, and now whole campuses where several programs share one site.</Note>
+</Notes>
+
+## Principle 3: Leverage lives early
+
+The decisions made first are the hardest to undo. That's where thinking pays off the most.
+
+### 3.1 Clear height is a budget
+
+<Figure
+  src="/systems/figures/structure.webp"
+  alt="The building's structure alone: slab, walls, floor trusses and roof trusses, with dimensions for nine-foot ceilings, an eighteen-inch floor and the attic."
+  caption="Nine-foot ceilings, an 18-inch floor between the units."
+  view="structure"
+/>
+
+<Notes>
+  <Note label="At home">The ceiling is at nine feet, with an 18-inch floor between the units. That number decides if a tall bookcase fits, where a fan can hang, and how much room is left above the ceiling for ducts and pipes. Every inch used up there comes out of the room below.</Note>
+  <Note label="The system idea">Meadows calls these leverage points, places where a small decision shapes everything after it. Structure and height are decided first and changed last.</Note>
+  <Note label="Where it stops">Height is not free either. A taller building costs more to build and to heat. The goal is enough height, used on purpose.</Note>
+</Notes>
+
+### 3.2 A clash found late becomes a soffit
+
+<Figure
+  src="/systems/figures/clash.webp"
+  alt="Close view of the hallway: a supply duct boxed into a soffit under the ceiling, with water, sprinkler and electrical lines passing above it, and dimensions showing seven feet eight inches under the soffit against nine feet elsewhere."
+  caption="7′-8″ under the soffit, 9′-0″ everywhere else."
+  view="clash"
+/>
+
+<Notes>
+  <Note label="At home">Over the hallway, the furnace duct was deeper than the space left after the pipes went in. The fix was to box it into a soffit and drop the ceiling to seven feet eight inches. People living there pay for that clash every day.</Note>
+  <Note label="The system idea">Problems live in the interconnections, not in the parts. Each system was fine by itself, they only failed where they met. That's why routing has an order: gravity drains first, big ducts next, then pipes that can bend, then cables.</Note>
+  <Note label="From practice" practice>Simulation and coordination models are the cheapest place for me to change my mind. Testing throughput before buying equipment, and settling the structure before the layout is locked, has avoided millions in spending more than once.</Note>
+</Notes>
+
+## Principle 4: Make it repeatable, make it easy to hand over
+
+A system outlives the person who designed it. It should be easy to copy, and easy for the next person to understand.
+
+### 4.1 Design the pattern, not the instance
+
+<Figure
+  src="/systems/figures/plumbing.webp"
+  alt="Plumbing in both units: cold and hot water lines under pressure, and drains sloping to a single stack that serves the stacked bathrooms and laundries of both floors."
+  caption="Wet rooms stacked, one drain stack for both units."
+  view="plumbing"
+/>
+
+<Notes>
+  <Note label="At home">The upstairs bathroom and laundry sit right above the ones downstairs, so one drain stack and one vent serve both units. The unit is a module, repeated up and across the building, and its plumbing only needs to be designed once.</Note>
+  <Note label="The system idea">Repetition is a design choice. A good module is easier to build, check and fix, and what you learn on one copy works for all of them.</Note>
+  <Note label="Where it stops">A pattern repeated where it doesn't fit becomes a constraint. Know which parts are standard, and which parts are allowed to change.</Note>
+</Notes>
+
+### 4.2 Labels are part of the system
+
+<Figure
+  src="/systems/figures/panel.webp"
+  alt="Two identical breaker panels. The left directory is blank; the right directory lists every circuit, from kitchen counter to smoke alarms."
+  caption="Same wires. Only one of them can be handed over."
+  view="labels"
+/>
+
+<Notes>
+  <Note label="At home">Two breaker panels can have exactly the same wires and breakers. Only one has the directory filled in. The other one works fine, until the day someone needs to change something.</Note>
+  <Note label="The system idea">A system has to make sense to the next person, not just to the one who designed it. Names, labels and written-down reasons are an information layer, and they are part of the design too.</Note>
+  <Note label="From practice" practice>Besides layouts, I build design standards, prototype templates, a naming system for spaces, and a searchable record of past decisions, so the next designer starts with the why, not just the drawing.</Note>
+</Notes>
+
+## Back to the word everyone skips
+
+Industrial engineering taught me how to make parts better. The "systems" part taught me to ask four questions first, in any space. What is it for? How do people and things move through it? What has to stay fixed, so everything else can change? And who will need to understand it after me?
+
+When a home answers these questions well, it disappears into the background. And that's the point. The best compliment for a system is that nobody needs to think about it.
+
+### Appendix: system atlas
+
+The rest of the building, one system at a time. Each view opens in the model at the top.
+
+<Atlas items={[
+  { src: "/systems/figures/zones.webp", alt: "Plan view of the ground floor with each room outlined and labeled with its furniture.", title: "Zones", text: "Each room is a zone with a job, sized from its furniture.", view: "zones" },
+  { src: "/systems/figures/hvac.webp", alt: "Heating and cooling: condensers outside, a furnace downstairs, an attic air handler, and ducts to every room.", title: "HVAC", text: "Furnace downstairs, air handler in the attic, a diffuser in every room.", view: "hvac" },
+  { src: "/systems/figures/elec.webp", alt: "Electrical distribution from the transformer to the meter bank, unit panels, branch circuits and lights.", title: "Electrical", text: "Transformer, meters, a panel per unit, circuits to every light.", view: "elec" },
+  { src: "/systems/figures/fire.webp", alt: "Fire sprinklers: a riser in the electrical room feeding mains in the floor cavity and attic, with heads in every room.", title: "Fire", text: "One riser, mains in the cavity and attic, a head in every room.", view: "fire" },
+  { src: "/systems/figures/overhead.webp", alt: "The upper floor lifted away to reveal the floor cavity, where duct, water, drains, sprinkler pipe and cable run at different heights.", title: "Overhead", text: "Every system shares the 18-inch floor, each at its own height.", view: "overhead" },
+  { src: "/systems/figures/labels.webp", alt: "The building with its information layer: unit numbers, meter IDs, panel names and equipment tags.", title: "Labels", text: "Unit numbers, meter IDs and panel names.", view: "labels" },
+]} />
+
+---
+
+*The apartment is a generic two-unit stack with typical US wood-frame dimensions, drawn in feet. It's a teaching model, not a survey of a real building. Examples from practice are described in general terms. The title comes from Chapter 3 of* Thinking in Systems: A Primer *by Donella H. Meadows (2008).*
