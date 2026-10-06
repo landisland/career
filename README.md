@@ -10,6 +10,7 @@ Liam's career site: timeline, resume, and writing. Built with [Astro](https://as
 | Home page intro | `src/pages/index.astro` |
 | Articles | `src/content/blog/<slug>/index.md` (`draft: true` hides a post) |
 | Site name, links | `src/consts.ts` |
+| Interactive 3D model and essay figures | `public/systems/` (model page at `/systems/model/`, figures in `figures/`); essay components in `src/components/systems/` |
 | Resume PDF | put it at `public/resume.pdf`, then set `HAS_PDF = true` in `src/pages/resume.astro` |
 
 ## Local preview

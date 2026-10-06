@@ -1,0 +1,18 @@
+---
+import "../../styles/systems.css";
+
+type Item = { src: string; alt: string; title: string; text: string; view: string };
+type Props = { items: Item[] };
+const { items } = Astro.props;
+---
+
+<div class="not-prose sys-wide sys-atlas">
+  {items.map((item) => (
+    <figure>
+      <div class="sys-frame"><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /></div>
+      <h4>{item.title}</h4>
+      <p>{item.text}</p>
+      <button type="button" class="sys-open" data-open-view={item.view}>Open in 3D ↑</button>
+    </figure>
+  ))}
+</div>

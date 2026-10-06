@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Apartment model · Why Systems Work So Well</title>
+<meta name="description" content="An ordinary two-story apartment with the drywall removed. Pick a view to see one system at a time.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{--paper:#fff;--ink:#141414;--muted:#6a6a68;--line:#e1e1de;--line-strong:#c9c9c5;
+    --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;--f-display:"IBM Plex Sans Condensed","Arial Narrow",sans-serif;color-scheme:light}
+  html,body{height:100%;margin:0}
+  body{background:var(--paper);color:var(--ink);font-family:var(--f-mono);display:flex;flex-direction:column}
+  .stage{position:relative;flex:1;min-height:0;overflow:hidden}
+  .stage canvas{display:block;width:100%;height:100%;outline:none;cursor:grab;touch-action:none}
+  .labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+  .lbl{position:absolute;left:0;top:0;white-space:nowrap;font:500 11px/1.2 var(--f-mono);color:var(--ink);background:var(--paper);border:1px solid var(--line-strong);border-radius:2px;padding:3px 6px 3px 5px;display:flex;align-items:center;gap:6px}
+  .lbl i{width:8px;height:8px;border-radius:50%;flex:none}
+  .lbl.room{background:none;border:none;font:600 11px/1 var(--f-display);letter-spacing:.09em;text-transform:uppercase;padding:0}
+  .lbl.room small{display:block;font:400 10.5px/1.3 var(--f-mono);letter-spacing:0;text-transform:none;color:var(--muted);margin-top:3px}
+  .lbl.room span{display:block;text-align:center}
+  .lbl.dim{border:none;padding:1px 4px}
+  .tools{position:absolute;right:10px;top:10px;display:flex;gap:6px}
+  .tools button,.tools a{font:500 11.5px var(--f-mono);border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);padding:5px 9px;border-radius:2px;cursor:pointer;text-decoration:none}
+  .bar{border-top:1px solid var(--line);padding:8px 12px 10px;background:var(--paper)}
+  .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+  .chip{flex:none;font:500 12px var(--f-mono);border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);padding:5px 10px;border-radius:2px;cursor:pointer}
+  .chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .chip:focus-visible,.tools button:focus-visible,.tools a:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .cap{font-size:12px;line-height:1.45;color:var(--muted);margin-top:6px;min-height:1.45em}
+  .cap b{color:var(--ink);font-weight:500}
+  .fallback{position:absolute;inset:auto 16px 16px;font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+  <div class="stage" id="stage">
+    <div class="labels" id="labels"></div>
+    <div class="tools">
+      <button type="button" id="labelsBtn" aria-pressed="true">Labels</button>
+      <button type="button" id="reset">Reset</button>
+      <a id="full" href="./" target="_blank" rel="noopener">Full screen ↗</a>
+    </div>
+  </div>
+  <div class="bar">
+    <div class="chips" id="chips" role="group" aria-label="Views"></div>
+    <div class="cap" id="cap"></div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="../model.js"></script>
+  <script>
+  (function(){
+    var chips = document.getElementById('chips'), cap = document.getElementById('cap'), stage = document.getElementById('stage');
+    var labelsBtn = document.getElementById('labelsBtn'), full = document.getElementById('full');
+    var embedded = window.self !== window.top;
+    if(!embedded) full.hidden = true;
+    var model = null, labelsOn = true;
+    function idFromHash(){ var h = (location.hash || '').slice(1); return SystemModel.FIGS.some(function(f){return f.id===h;}) ? h : 'overview'; }
+    function onChange(f){
+      cap.innerHTML = ''; var b = document.createElement('b'); b.textContent = f.name; cap.appendChild(b);
+      cap.appendChild(document.createTextNode(' · ' + f.caption));
+      [].forEach.call(chips.children, function(c){ c.setAttribute('aria-pressed', c.dataset.id === f.id ? 'true' : 'false'); });
+      full.href = './#' + f.id;
+    }
+    SystemModel.FIGS.forEach(function(f){
+      var c = document.createElement('button'); c.type = 'button'; c.className = 'chip'; c.dataset.id = f.id; c.textContent = f.name;
+      c.addEventListener('click', function(){ if(!model) return; model.select(f.id); history.replaceState(null, '', '#' + f.id); });
+      chips.appendChild(c);
+    });
+    try{
+      model = SystemModel.mount(stage, document.getElementById('labels'), {onChange: onChange, start: idFromHash()});
+    }catch(e){
+      stage.insertAdjacentHTML('beforeend', '<p class="fallback">This 3D view needs WebGL. The figures in the article show every view.</p>');
+      return;
+    }
+    function setLabels(on){ labelsOn = on; model.labels(on); labelsBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); labelsBtn.textContent = on ? 'Labels' : 'Labels off'; }
+    if(stage.clientWidth < 520) setLabels(false);
+    labelsBtn.addEventListener('click', function(){ setLabels(!labelsOn); });
+    document.getElementById('reset').addEventListener('click', function(){ model.reset(); });
+    window.addEventListener('hashchange', function(){ model.select(idFromHash()); });
+    window.addEventListener('message', function(e){
+      if(e.origin !== location.origin || !e.data || e.data.type !== 'systems:select') return;
+      model.select(e.data.view);
+    });
+  })();
+  </script>
+</body>
+</html>
