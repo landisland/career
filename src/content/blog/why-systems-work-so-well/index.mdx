@@ -11,6 +11,7 @@ import Figure from "@components/systems/Figure.astro";
 import Notes from "@components/systems/Notes.astro";
 import Note from "@components/systems/Note.astro";
 import Atlas from "@components/systems/Atlas.astro";
+import Parts from "@components/systems/Parts.astro";
 
 *This is the kind of apartment I live in. I want to use it to explain why we can live comfortably in a space like this, and what kind of effort is hidden behind the scenes.*
 
@@ -28,11 +29,13 @@ The title of this post comes from a chapter in Donella Meadows' book *Thinking i
 
 Meadows says a system has three parts: elements, interconnections and a purpose. In a home, the elements are easy to see. Walls, a sofa, a fridge, a water heater. The interconnections hide behind the drywall: power, water, air, drains, and also the paths people and things take through the rooms. The purpose is the hardest part to see, but it's the most important one. A home is there so the people inside can live peacefully and comfortably.
 
-<Figure
-  src="/systems/figures/parts.webp"
-  alt="Three views of the same apartment. Left: only walls, floors and furniture. Middle: only the hidden systems for power, water, air, drains and sprinklers. Right: the finished building, with none of the systems visible."
-  ratio="3 / 1"
+<Parts
   caption="Elements + interconnections → purpose. Same apartment, three ways to look at it."
+  items={[
+    { src: "/systems/figures/parts-elements.webp", alt: "The apartment with only its walls, floors and furniture.", kicker: "Elements", title: "What you can see", text: "Walls, floors, a sofa, a bed, the fridge and the stove.", view: "elements" },
+    { src: "/systems/figures/parts-connections.webp", alt: "The same apartment showing only the hidden systems for power, water, air, drains and sprinklers.", kicker: "Interconnections", title: "What hides behind the drywall", text: "Power, water, air, drains and sprinklers, plus the paths we walk every day.", view: "connections" },
+    { src: "/systems/figures/parts-purpose.webp", alt: "The finished building, with none of the systems visible.", kicker: "Purpose", title: "What you actually feel", text: "A quiet, comfortable home. All of the above stays out of sight.", view: "purpose" },
+  ]}
 />
 
 You can tell a home works well by how little you think about it. You turn on the tap and hot water comes out. You flip a switch and never wonder where the power comes from. The air is comfortable when you sleep. All this quiet is what the system gives you.

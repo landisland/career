@@ -11,9 +11,13 @@ type Props = {
 const { src, alt, caption, view, ratio = "16 / 10" } = Astro.props;
 ---
 
-<figure class="not-prose sys-wide">
+<figure class="not-prose sys-block">
   <div class="sys-frame" style={`aspect-ratio:${ratio}`}>
-    <img src={src} alt={alt} loading="lazy" decoding="async" />
+    <a class="sys-zoom" href={src} target="_blank" rel="noopener" title="Open full size">
+      <img src={src} alt={alt} loading="lazy" decoding="async" />
+      <span class="sys-zoom-badge" aria-hidden="true">⤢</span>
+      <span class="sr-only">(opens full size in a new tab)</span>
+    </a>
   </div>
   {(caption || view) && (
     <figcaption class="sys-cap">

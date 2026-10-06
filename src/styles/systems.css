@@ -1,8 +1,7 @@
 /* Shared styles for the "Why Systems Work So Well" essay components.
-   Wide elements step out of the 640px reading column on larger screens. */
-.sys-wide {
-  width: min(960px, calc(100vw - 32px));
-  margin-left: calc(50% - min(480px, 50vw - 16px));
+   Every block fills the reading column exactly, so the model, figures and text
+   share the same left and right edges at every screen size. */
+.sys-block {
   margin-top: 1.75rem;
   margin-bottom: 1.75rem;
 }
@@ -17,9 +16,25 @@
 }
 .sys-frame iframe { display: block; width: 100%; height: 100%; border: 0; }
 .sys-frame img { display: block; width: 100%; height: 100%; object-fit: contain; margin: 0; }
+/* The model needs more height than a figure: the view bar sits inside the frame.
+   Capped to the screen height so it never overflows a short or landscape screen. */
+.sys-frame.sys-model { aspect-ratio: 4 / 3; max-height: 85vh; max-height: 85svh; }
 @media (max-width: 640px) {
   .sys-frame.sys-model { aspect-ratio: 3 / 4; }
 }
+
+/* Figures open at full size in a new tab, for reading the small print in the diagrams. */
+.sys-zoom { display: block; height: 100%; cursor: zoom-in; }
+.sys-zoom-badge {
+  position: absolute; right: 8px; bottom: 8px;
+  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; font-size: 15px; line-height: 1; color: rgb(0 0 0 / 0.6);
+  background: rgb(255 255 255 / 0.9); border: 1px solid rgb(0 0 0 / 0.15); border-radius: 4px;
+  pointer-events: none;
+}
+.sys-zoom:hover .sys-zoom-badge { color: #000; border-color: rgb(0 0 0 / 0.3); }
+.sys-zoom:focus-visible { outline: 2px solid #000; outline-offset: -2px; }
+
 .sys-cap {
   display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0.25rem 1rem;
   margin-top: 0.5rem; font-size: 0.8125rem; line-height: 1.5;
@@ -48,9 +63,39 @@
   .sys-notes dd { margin-bottom: 0.9rem; }
 }
 
-.sys-atlas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem 1.25rem; }
-@media (max-width: 760px) { .sys-atlas { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.sys-atlas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 1.25rem; }
 @media (max-width: 460px) { .sys-atlas { grid-template-columns: 1fr; } }
 .sys-atlas .sys-frame { aspect-ratio: 16 / 10; }
+/* Each tile is a column, so the Open in 3D buttons line up along the bottom of a row. */
+.sys-atlas figure, .sys-parts figure { display: flex; flex-direction: column; }
+.sys-atlas .sys-open, .sys-parts .sys-open { margin-top: auto; align-self: flex-start; }
 .sys-atlas h4 { margin: 0.6rem 0 0.15rem; font-size: 0.95rem; font-weight: 600; }
 .sys-atlas p { margin: 0 0 0.35rem; font-size: 0.875rem; line-height: 1.5; }
+
+/* Elements + interconnections -> purpose: three panels in a row, stacked on phones. */
+.sys-parts {
+  container-type: inline-size;
+  display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto minmax(0, 1fr); gap: 0 0.5rem;
+}
+.sys-parts .sys-frame { aspect-ratio: 4 / 3; }
+.sys-parts-op {
+  /* Centered on the 4:3 images: a panel is about (row - glyphs) / 3 wide, so its middle is 1/8 of that. */
+  align-self: start; padding-top: 2.6rem; padding-top: calc((100cqw - 3rem) / 8 - 0.5rem);
+  font: 400 1.1rem/1 ui-sans-serif, system-ui, sans-serif; color: rgb(0 0 0 / 0.4);
+}
+.sys-parts-kicker {
+  display: block; margin-top: 0.6rem;
+  font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.65rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase; color: rgb(0 0 0 / 0.5);
+}
+.sys-parts h4 { margin: 0.15rem 0 0.15rem; font-size: 0.95rem; font-weight: 600; line-height: 1.3; color: #000; }
+.sys-parts p { margin: 0 0 0.35rem; font-size: 0.8125rem; line-height: 1.45; }
+@media (max-width: 560px) {
+  .sys-parts { grid-template-columns: 1fr; gap: 0; }
+  .sys-parts figure { display: grid; grid-template-columns: 44% minmax(0, 1fr); gap: 0 0.9rem; align-items: start; }
+  .sys-parts figure > :not(.sys-frame) { grid-column: 2; justify-self: start; }
+  .sys-parts .sys-frame { grid-row: 1 / span 4; }
+  .sys-parts-kicker { margin-top: 0; }
+  .sys-parts-op { padding: 0.35rem 0; text-align: center; width: 44%; }
+  .sys-parts-op.is-arrow span { display: inline-block; transform: rotate(90deg); }
+}

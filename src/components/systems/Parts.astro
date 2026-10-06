@@ -1,0 +1,31 @@
+---
+// Elements + interconnections -> purpose, as three panels with real text,
+// so the captions stay readable at the width of the reading column.
+import "../../styles/systems.css";
+
+type Item = { src: string; alt: string; kicker: string; title: string; text: string; view: string };
+type Props = { items: Item[]; caption?: string };
+const { items, caption } = Astro.props;
+---
+
+<figure class="not-prose sys-block">
+  <div class="sys-parts">
+    {items.map((item, i) => (
+      <>
+        {i > 0 && (
+          <div class:list={["sys-parts-op", { "is-arrow": i === items.length - 1 }]} aria-hidden="true">
+            <span>{i === items.length - 1 ? "→" : "+"}</span>
+          </div>
+        )}
+        <figure>
+          <div class="sys-frame"><img src={item.src} alt={item.alt} loading="lazy" decoding="async" /></div>
+          <span class="sys-parts-kicker">{item.kicker}</span>
+          <h4>{item.title}</h4>
+          <p>{item.text}</p>
+          <button type="button" class="sys-open" data-open-view={item.view}>Open in 3D ↑</button>
+        </figure>
+      </>
+    ))}
+  </div>
+  {caption && <figcaption class="sys-cap"><span>{caption}</span></figcaption>}
+</figure>

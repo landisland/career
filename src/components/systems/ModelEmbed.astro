@@ -7,7 +7,7 @@ type Props = { view?: string; caption?: string };
 const { view = "overview", caption = "Drag to turn the model. Pick a view to see one system at a time." } = Astro.props;
 ---
 
-<figure class="not-prose sys-wide" id="systems-model-figure">
+<figure class="not-prose sys-block" id="systems-model-figure">
   <div class="sys-frame sys-model">
     <iframe
       id="systems-model"
